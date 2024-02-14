@@ -147,19 +147,16 @@
                                             </p>
                                             <p class="text-muted m-0">Rp.{{ $item['sub_total'] }}</p>
                                         </div>
-                                        <div class="qtyControl m-2">
-                                            <p>
-                                                <button type="button"
-                                                    wire:click='decreaseQuantity({{ $item['id'] }})'
-                                                    class="btn btn-primary ">
-                                                    -
-                                                </button>
-                                                <span class="text-muted">{{ $item['qty'] }}</span>
-                                                <button type="button"
-                                                    wire:click='increaseQuantity({{ $item['id'] }})'
-                                                    class="btn btn-primary ">
-                                                    +
-                                                </button>
+                                        <div class="qtyControl d-md-flex gap-md-1">
+
+                                            <a type="button" wire:click='decreaseQuantity({{ $item['id'] }})'
+                                                class="bi bi-dash-circle-fill">
+                                            </a>
+                                            <p class="text-muted m-0">{{ $item['qty'] }}</p>
+                                            <a type="button" wire:click='increaseQuantity({{ $item['id'] }})'
+                                                class="bi bi-plus-circle-fill ">
+
+                                            </a>
                                         </div>
                                     </div>
 
