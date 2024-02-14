@@ -13,18 +13,19 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Mockery\Undefined;
 use PHPUnit\TestRunner\TestResult\Collector;
 
 class Index extends Component
 {
 
-
+    use WithPagination;
 
 
     //Menu List
     public Collection $types;
-    public Collection $produk;
+
     public $search;
     public $kategori_id = 0;
     public $type_id = 0;
@@ -231,13 +232,14 @@ class Index extends Component
         }
 
         if ($this->type_id != 0) {
-            $this->produk = Menu::where('name', 'like', '%' . $this->search . '%')
+            $produk = Menu::where('name', 'like', '%' . $this->search . '%')
                 ->where('type_id', $this->type_id)
-                ->get();
+                ->simplePaginate(15);
         } else {
-            $this->produk = Menu::where('name', 'like', '%' . $this->search . '%')->with('stocks')->get();
+            $produk = Menu::where('name', 'like', '%' . $this->search . '%')
+                ->with('stocks')
+                ->simplePaginate(15);
         }
-
-        return view('livewire.transaction.index', compact('categories', 'customer'));
+        return view('livewire.transaction.index', compact('categories', 'customer', 'produk'));
     }
 }

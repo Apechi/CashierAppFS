@@ -113,6 +113,9 @@
                             @endforeach
                         @endif
                     </div>
+                    <div class="tes">
+                        {{ $produk->links() }}
+                    </div>
                 </div>
             </div>
             <div class="right col-lg-4 ">
