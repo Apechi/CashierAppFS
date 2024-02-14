@@ -70,58 +70,50 @@ class Index extends Component
 
     public function checkout()
     {
-        if ($this->tipe_pembayaran == 'cash') {
+        $rules = [
+            'tanggal' => 'required|date',
+            'total_price' => 'required|numeric',
+            'tipe_pembayaran' => 'required|in:cash,debit',
+            'keterangan_pembayaran' => 'required|string',
+            'customer_id' => 'required|exists:customers,id',
+        ];
 
-            $this->validate(
-                [
-                    'tanggal' => 'required|date',
-                    'total_price' => 'required|numeric',
-                    'tipe_pembayaran' => 'required|in:cash,debit',
-                    'keterangan_pembayaran' => 'nullable|string',
-                    'customer_id' => 'required|exists:customers,id',
-                    'total_bayar' => 'required|numeric|min:' . $this->total_price
-                ]
-            );
-        } else {
-            $this->validate(
-                [
-                    'tanggal' => 'required|date',
-                    'total_price' => 'required|numeric',
-                    'tipe_pembayaran' => 'required|in:cash,debit',
-                    'keterangan_pembayaran' => 'nullable|string',
-                    'customer_id' => 'required|exists:customers,id',
-                ]
-            );
+        if ($this->tipe_pembayaran == 'cash') {
+            $rules['total_bayar'] = 'required|numeric|min:' . $this->total_price;
         }
 
-        Transaction::create([
+        $this->validate($rules);
+
+        $transactionData = [
             'id' => $this->no_faktur,
             'date' => $this->tanggal,
             'total_price' => $this->total_price,
             'payment_method' => $this->tipe_pembayaran,
             'keterangan' => $this->keterangan_pembayaran,
             'customer_id' => $this->customer_id
-        ]);
+        ];
 
-        foreach ($this->produk_detail as  $produk) {
+        Transaction::create($transactionData);
 
+        foreach ($this->produk_detail as $produk) {
             $subtractQty = $produk['qty'];
 
-            Stock::where('menu_id', '=', $produk['id'])->update([
-                'quantity' =>  DB::raw("quantity - $subtractQty")
+            Stock::where('menu_id', $produk['id'])->update([
+                'quantity' => DB::raw("quantity - $subtractQty")
             ]);
 
-            TransactionDetail::create([
+            $transactionDetailData = [
                 'menu_id' => $produk['id'],
                 'transaction_id' => $this->no_faktur,
                 'qty' => $produk['qty'],
                 'unitPrice' => $produk['price'],
                 'subTotal' => $produk['sub_total']
-            ]);
+            ];
+
+            TransactionDetail::create($transactionDetailData);
         }
 
-        return redirect()
-            ->route('transaction.index')->with('success', 'Berhasil Tambah Transaksi');
+        return redirect()->route('transaction.index')->with('success', 'Transaksi Berhasil');
     }
 
 
