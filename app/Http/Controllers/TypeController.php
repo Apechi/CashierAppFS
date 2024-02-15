@@ -19,26 +19,16 @@ class TypeController extends Controller
     {
         $this->authorize('view-any', Type::class);
 
-        $search = $request->get('search', '');
 
-        $types = Type::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
-
-        return view('app.types.index', compact('types', 'search'));
+        return view('app.types.index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): View
+    public function create(Request $request)
     {
         $this->authorize('create', Type::class);
-
-        $categories = Category::pluck('name', 'id');
-
-        return view('app.types.create', compact('categories'));
     }
 
     /**
@@ -53,8 +43,8 @@ class TypeController extends Controller
         $type = Type::create($validated);
 
         return redirect()
-            ->route('types.edit', $type)
-            ->withSuccess(__('crud.common.created'));
+            ->route('types.index')
+            ->withSuccess('Tipe Category Berhasil Di Tambahkan');
     }
 
     /**
@@ -70,13 +60,9 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, Type $type): View
+    public function edit(Request $request, Type $type)
     {
         $this->authorize('update', $type);
-
-        $categories = Category::pluck('name', 'id');
-
-        return view('app.types.edit', compact('type', 'categories'));
     }
 
     /**

@@ -99,19 +99,26 @@ class Index extends Component
         foreach ($this->produk_detail as $produk) {
             $subtractQty = $produk['qty'];
 
-            Stock::where('menu_id', $produk['id'])->update([
-                'quantity' => DB::raw("quantity - $subtractQty")
-            ]);
+            DB::beginTransaction();
+            try {
+                $transactionDetailData = [
+                    'menu_id' => $produk['id'],
+                    'transaction_id' => $this->no_faktur,
+                    'qty' => $produk['qty'],
+                    'unitPrice' => $produk['price'],
+                    'subTotal' => $produk['sub_total']
+                ];
 
-            $transactionDetailData = [
-                'menu_id' => $produk['id'],
-                'transaction_id' => $this->no_faktur,
-                'qty' => $produk['qty'],
-                'unitPrice' => $produk['price'],
-                'subTotal' => $produk['sub_total']
-            ];
+                TransactionDetail::create($transactionDetailData);
 
-            TransactionDetail::create($transactionDetailData);
+                Stock::where('menu_id', $produk['id'])->update([
+                    'quantity' => DB::raw("quantity - $subtractQty")
+                ]);
+
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollBack();
+            }
         }
 
         return redirect()->route('transaction.index')->with('success', 'Transaksi Berhasil');
@@ -150,16 +157,19 @@ class Index extends Component
 
     public function pilihMenu($id)
     {
-        $menu = Menu::findOrFail($id);
 
+        $produkIds = collect($this->produk_detail)->pluck('id');
+
+        $menu = Menu::findOrFail($id);
         $stok = Stock::where('menu_id', $id)->first();
 
-        if (!$stok || $stok->quantity <= 0) {
-            session(["error" => "Maaf, Stok tidak tersedia"]);
+        $indexStok = $produkIds->contains($id);
+
+        if (!$stok || $stok->quantity <= 0 && $this->produk_detail[$indexStok]['qty'] <= 0) {
+            redirect('transaction.index')->with("error", "Maaf, Stok tidak tersedia");
             return;
         }
 
-        $produkIds = collect($this->produk_detail)->pluck('id');
 
         if ($produkIds->contains($id)) {
             $index = $produkIds->search($id);
