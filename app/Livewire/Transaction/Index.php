@@ -34,6 +34,7 @@ class Index extends Component
     //Shopping Cart
     public $qty = 0;
     public $produk_detail = [];
+    public $stokBeak;
 
     //Checkout
     public $total_price;
@@ -46,7 +47,7 @@ class Index extends Component
     public $kembalian;
 
 
-    public function setupCheckout()
+    public function getTotalHarga()
     {
 
         $totalPrice = 0;
@@ -57,13 +58,14 @@ class Index extends Component
         }
 
         $this->total_price = $totalPrice;
+    }
 
-        $no_faktur = IdGenerator::generate([
-            'table' => 'transactions',
-            'length' => 12,
-            'prefix' => date('Ymd')
-        ]);
+    public function setupCheckout()
+    {
 
+        $this->getTotalHarga();
+
+        $no_faktur = $this->generateCustomId();
 
         $this->no_faktur = $no_faktur;
     }
@@ -163,17 +165,18 @@ class Index extends Component
         $menu = Menu::findOrFail($id);
         $stok = Stock::where('menu_id', $id)->first();
 
-        $indexStok = $produkIds->contains($id);
-
-        if (!$stok || $stok->quantity <= 0 && $this->produk_detail[$indexStok]['qty'] <= 0) {
-            redirect('transaction.index')->with("error", "Maaf, Stok tidak tersedia");
-            return;
-        }
-
 
         if ($produkIds->contains($id)) {
             $index = $produkIds->search($id);
-            $this->produk_detail[$index]['qty']++;
+
+            if ($this->produk_detail[$index]['qty'] >= $stok->quantity) {
+                $this->stokBeak = $id;
+                $this->addError('stok-habis', "Stok tidak mencukupi");
+            } else {
+
+                $this->produk_detail[$index]['qty']++;
+            }
+
 
             $this->subTotalChange($index);
         } else {
@@ -188,6 +191,8 @@ class Index extends Component
 
             $this->produk_detail[] = $data;
         }
+
+        $this->getTotalHarga();
     }
 
 
@@ -205,8 +210,19 @@ class Index extends Component
     {
         $produkIds = collect($this->produk_detail)->pluck('id');
         $index = $produkIds->search($id);
-        $this->produk_detail[$index]['qty']++;
+
+        $stok = Stock::where('menu_id', $id)->first();
+
+
+        if ($this->produk_detail[$index]['qty'] >= $stok->quantity) {
+            $this->stokBeak = $id;
+            $this->addError('stok-habis', "Stok tidak mencukupi");
+        } else {
+            $this->produk_detail[$index]['qty']++;
+        }
+
         $this->subTotalChange($index);
+        $this->getTotalHarga();
     }
 
     public function clearOrder()
@@ -224,9 +240,9 @@ class Index extends Component
             unset($this->produk_detail[$index]);
             $this->produk_detail = array_values($this->produk_detail);
         } else {
-
             $this->subTotalChange($index);
         }
+        $this->getTotalHarga();
     }
 
 
@@ -251,5 +267,22 @@ class Index extends Component
                 ->simplePaginate(15);
         }
         return view('livewire.transaction.index', compact('categories', 'customer', 'produk'));
+    }
+
+    public function generateCustomId()
+    {
+        $today = now()->format('Ymd');
+        $lastCustomId = Transaction::where('date', $today)->orderBy('id', 'desc')->first();
+
+
+
+        if ($lastCustomId) {
+            $lastId = substr($lastCustomId->id, -4);
+            $newId = $today . str_pad((intval($lastId) + 1), 4, '0', STR_PAD_LEFT);
+        } else {
+            $newId = $today . '0001';
+        }
+
+        return $newId;
     }
 }

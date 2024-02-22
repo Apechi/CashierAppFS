@@ -20,6 +20,9 @@ class Index extends Component
         $this->category_id = '';
     }
 
+
+
+
     public function render()
     {
 

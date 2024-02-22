@@ -1,11 +1,12 @@
 <div>
     <div class="container">
         <div class="searchbar mt-0 mb-4">
-            <div class="row">
-                <div class="col-md-6">
-                    <input class="w-100" wire:model.live="search" type="text" placeholder="Search">
+            <div class="d-flex justify-content-between">
+                <div class="input-group w-25">
+                    <span class="input-group-text bi bi-search"></span>
+                    <input class="form-control" wire:model.live="search" type="text" placeholder="Search">
                 </div>
-                <div class="col-md-2">
+                <div class="">
                     @can('create', App\Models\Category::class)
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#createCategories">

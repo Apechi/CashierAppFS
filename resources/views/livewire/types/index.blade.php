@@ -4,7 +4,8 @@
             <div class="d-flex justify-content-end">
                 <div class="text-right">
                     @can('create', App\Models\Type::class)
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
+                        <button type="button" data-bs-toggle="modal" wire:click='resetField()' data-bs-target="#exampleModal"
+                            class="btn btn-primary">
                             <i class="icon ion-md-add"></i> Tambah
                         </button>
                     @endcan
@@ -19,7 +20,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table id="tableType" class="table table-borderless table-hover">
+                    <table id="tableType" wire:ignore.self class="table table-borderless table-hover">
                         <thead>
                             <tr>
                                 <th class="text-left">

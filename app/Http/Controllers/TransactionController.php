@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -11,6 +12,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        $this->authorize('view-any', Transaction::class);
         return view('app.transaction.index');
     }
 
