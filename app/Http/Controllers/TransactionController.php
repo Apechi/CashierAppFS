@@ -16,6 +16,14 @@ class TransactionController extends Controller
         return view('app.transaction.index');
     }
 
+
+    public function notaFaktur($id)
+    {
+        $data = Transaction::findOrFail($id);
+
+        return view('app.transaction.invoice', compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -23,6 +31,9 @@ class TransactionController extends Controller
     {
         //
     }
+
+
+    
 
     /**
      * Store a newly created resource in storage.

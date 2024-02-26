@@ -54,4 +54,5 @@ Route::prefix('/')
         Route::resource('categories', CategoryController::class);
         Route::resource('menus', MenuController::class);
         Route::resource('transaction', TransactionController::class);
+        Route::get('transaksi/invoice/{id}', [TransactionController::class, 'notaFaktur']);
     });

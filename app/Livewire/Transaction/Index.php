@@ -12,6 +12,8 @@ use App\Models\Type;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Mockery\Undefined;
@@ -21,7 +23,7 @@ class Index extends Component
 {
 
     use WithPagination;
-
+    use LivewireAlert;
 
     //Menu List
     public Collection $types;
@@ -45,6 +47,8 @@ class Index extends Component
     public $total_bayar;
     public $customer_id;
     public $kembalian;
+
+
 
 
     public function getTotalHarga()
@@ -123,8 +127,41 @@ class Index extends Component
             }
         }
 
-        return redirect()->route('transaction.index')->with('success', 'Transaksi Berhasil');
+
+        $this->alert('success', 'Transaksi Berhasil', [
+            'position' => 'center',
+            'toast' => true,
+            'timer' => 99999999,
+            'showConfirmButton' => true,
+            'onConfirmed' => "transactionDialogTrue",
+            'confirmButtonText' => 'Nota Faktur',
+            'showCancelButton' => true,
+            'onDismissed' => "transactionDialogFalse",
+            'cancelButtonText' => 'Ok',
+
+        ]);
     }
+
+
+    #[On('transactionDialogTrue')]
+    public function rTrue()
+    {
+        $this->toNotaFaktur($this->no_faktur);
+    }
+
+
+    public function toNotaFaktur($id)
+    {
+        redirect("transaksi/invoice/{$id}");
+    }
+
+    #[On('transactionDialogFalse')]
+    public function rFalse()
+    {
+        redirect(route('transaksi.index'));
+    }
+
+
 
 
 
