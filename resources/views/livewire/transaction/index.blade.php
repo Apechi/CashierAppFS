@@ -171,7 +171,7 @@
                                 </div>
                                 @if ($item['id'] === $stokBeak)
                                     @error('stok-habis')
-                                        <p class="text-danger m-0">Stok Habis!</p>
+                                        <p class="text-danger m-0">Melebihi Stok!</p>
                                     @enderror
                                 @endif
                             </div>

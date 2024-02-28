@@ -101,36 +101,40 @@
                                         </tr>
                                     </thead><!-- end thead -->
                                     <tbody>
-                                        @foreach ($data->transactionDetail as $item)
-                                            
+                                        @foreach ($data->transactionDetails as $item)
+                                            <tr>
+                                                <th scope="row">0{{ $loop->index + 1 }}</th>
+                                                <td>
+                                                    <div>
+                                                        <h5 class="text-truncate font-size-14 mb-1">
+                                                            {{ $item->menu->name }}
+                                                        </h5>
+                                                        <p class="text-muted mb-0">{{ $item->menu->description }}</p>
+                                                    </div>
+                                                </td>
+                                                <td>Rp. {{ $item->unitPrice }}</td>
+                                                <td>{{ $item->qty }}</td>
+                                                <td class="text-end">Rp. {{ $item->subTotal }}</td>
+                                            </tr>
                                         @endforeach
-                                        <tr>
-                                            <th scope="row">01</th>
-                                            <td>
-                                                <div>
-                                                    <h5 class="text-truncate font-size-14 mb-1">Black Strap A012</h5>
-                                                    <p class="text-muted mb-0">Watch, Black</p>
-                                                </div>
-                                            </td>
-                                            <td>$ 245.50</td>
-                                            <td>1</td>
-                                            <td class="text-end">$ 245.50</td>
-                                        </tr>
                                         <!-- end tr -->
 
 
 
                                         <!-- end tr -->
-                                        <tr>
-                                            <th scope="row" colspan="4" class="border-0 text-end">Total</th>
-                                            <td class="border-0 text-end">
-                                                <h4 class="m-0 fw-semibold">$739.00</h4>
-                                            </td>
-                                        </tr>
+
                                         <!-- end tr -->
                                     </tbody><!-- end tbody -->
                                 </table><!-- end table -->
                             </div><!-- end table responsive -->
+                            <div class="total d-flex gap-4 m-3 justify-content-end">
+                                <h4 class="border-0 text-end">Total: </h4>
+                                <h4 class="m-0 fw-semibold text-end" colspan="3">Rp
+                                    {{ $data->total_price }}
+                                </h4>
+                            </div>
+
+
                             <div class="d-print-none mt-4">
                                 <div class="float-end">
                                     <a href="javascript:window.print()" class="btn btn-success me-1"><i
