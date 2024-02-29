@@ -18,6 +18,12 @@ class Categories extends Component
     public $categories_id = 0;
 
 
+    public function resetField()
+    {
+        $this->name = '';
+        $this->icon = '';
+        $this->categories_id = '';
+    }
 
 
     public function render()
@@ -43,16 +49,5 @@ class Categories extends Component
         $this->categories_id = $categories->id;
         $this->name = $categories->name;
         $this->icon = $categories->icon;
-    }
-
-
-
-
-    public function delete($id)
-    {
-        if ($id) {
-            Category::findOrFail($id)->delete();
-            session()->flash('success', 'Kategori berhasil di hapus');
-        }
     }
 }

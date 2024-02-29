@@ -140,14 +140,17 @@ class Index extends Component
             'cancelButtonText' => 'Ok',
 
         ]);
+
+
+        // $this->dispatch('transactionDialogTrue');
     }
 
 
-    #[On('transactionDialogTrue')]
-    public function rTrue()
-    {
-        $this->toNotaFaktur($this->no_faktur);
-    }
+    // #[On('transactionDialogTrue')]
+    // public function rTrue()
+    // {
+    //     $this->toNotaFaktur($this->no_faktur);
+    // }
 
 
     public function toNotaFaktur($id)
@@ -271,14 +274,18 @@ class Index extends Component
     {
         $produkIds = collect($this->produk_detail)->pluck('id');
         $index = $produkIds->search($id);
-        $this->produk_detail[$index]['qty']--;
 
-        if ($this->produk_detail[$index]['qty'] <= 0) {
-            unset($this->produk_detail[$index]);
-            $this->produk_detail = array_values($this->produk_detail);
-        } else {
-            $this->subTotalChange($index);
+        if ($index !== false && array_key_exists($index, $this->produk_detail)) {
+            $this->produk_detail[$index]['qty']--;
+
+            if ($this->produk_detail[$index]['qty'] <= 0) {
+                unset($this->produk_detail[$index]);
+                $this->produk_detail = array_values($this->produk_detail);
+            } else {
+                $this->subTotalChange($index);
+            }
         }
+
         $this->getTotalHarga();
     }
 

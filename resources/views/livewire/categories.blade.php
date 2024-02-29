@@ -8,7 +8,7 @@
                 </div>
                 <div class="">
                     @can('create', App\Models\Category::class)
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-primary" wire:click='resetField()' data-bs-toggle="modal"
                             data-bs-target="#createCategories">
                             Tambah
                         </button>

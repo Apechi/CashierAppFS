@@ -215,4 +215,15 @@
     </div>
     @include('livewire.transaction.checkout')
 
+
+
 </div>
+
+@script
+    <script>
+        $wire.on('transactionDialogTrue', () => {
+            let no_faktur = $wire.no_faktur
+            window.open("transaksi/invoice/" + no_faktur, );
+        });
+    </script>
+@endscript

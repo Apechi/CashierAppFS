@@ -9,8 +9,8 @@ use Livewire\Component;
 class Index extends Component
 {
 
-    public $name, $icon;
-    public $category_id;
+    public $name, $icon, $category_id;
+    public $type_id;
 
 
     public function resetField()
@@ -18,6 +18,16 @@ class Index extends Component
         $this->name = '';
         $this->icon = '';
         $this->category_id = '';
+    }
+
+
+    public function edit($id)
+    {
+        $type = Type::findOrFail($id);
+
+        $this->category_id = $type->category->id;
+        $this->name = $type->name;
+        $this->icon = $type->icon;
     }
 
 

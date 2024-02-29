@@ -4,8 +4,7 @@
             <div class="d-flex justify-content-end">
                 <div class="text-right">
                     @can('create', App\Models\Type::class)
-                        <button type="button" data-bs-toggle="modal" wire:click='resetField()' data-bs-target="#exampleModal"
-                            class="btn btn-primary">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
                             <i class="icon ion-md-add"></i> Tambah
                         </button>
                     @endcan
@@ -19,8 +18,8 @@
                     <h4 class="card-title">@lang('crud.types.index_title')</h4>
                 </div>
 
-                <div class="table-responsive">
-                    <table id="tableType" wire:ignore.self class="table table-borderless table-hover">
+                <div class="table-responsive" wire:ignore>
+                    <table id="tableType" class="table table-borderless table-hover">
                         <thead>
                             <tr>
                                 <th class="text-left">
@@ -52,7 +51,8 @@
                                     <td class="text-center" style="width: 134px;">
                                         <div role="group" aria-label="Row Actions" class="btn-group">
                                             @can('update', $type)
-                                                <a href="{{ route('types.edit', $type) }}">
+                                                <a data-bs-toggle="modal" data-bs-target="#editType"
+                                                    wire:click='edit({{ $type->id }})'>
                                                     <button type="button" class="btn btn-light">
                                                         <i class="icon ion-md-create"></i>
                                                     </button>
@@ -83,14 +83,14 @@
                 </div>
             </div>
         </div>
+        @include('app.types.create')
+        @include('app.types.edit')
     </div>
-    @include('app.types.create')
-
-
+</div>
+@script
     <script>
         $(document).ready(function() {
             $('#tableType').DataTable();
         });
     </script>
-
-</div>
+@endscript
