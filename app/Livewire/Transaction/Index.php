@@ -146,17 +146,6 @@ class Index extends Component
     }
 
 
-    // #[On('transactionDialogTrue')]
-    // public function rTrue()
-    // {
-    //     $this->toNotaFaktur($this->no_faktur);
-    // }
-
-
-    public function toNotaFaktur($id)
-    {
-        redirect("transaksi/invoice/{$id}");
-    }
 
     #[On('transactionDialogFalse')]
     public function rFalse()

@@ -223,7 +223,9 @@
     <script>
         $wire.on('transactionDialogTrue', () => {
             let no_faktur = $wire.no_faktur
-            window.open("transaksi/invoice/" + no_faktur, );
+            window.open("transaksi/invoice/" + no_faktur, "_blank",
+                "width=500px,height=700px");
+            location.reload();
         });
     </script>
 @endscript
