@@ -78,11 +78,7 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="5">{!! $customers->render() !!}</td>
-                            </tr>
-                        </tfoot>
+
                     </table>
                 </div>
             </div>

@@ -16,18 +16,14 @@ class MenuController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
         $this->authorize('view-any', Menu::class);
 
-        $search = $request->get('search', '');
 
-        $menus = Menu::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
+        $menus = Menu::latest()->get();
 
-        return view('app.menus.index', compact('menus', 'search'));
+        return view('app.menus.index', compact('menus'));
     }
 
     /**

@@ -21,9 +21,7 @@ class TableController extends Controller
         $search = $request->get('search', '');
 
         $tables = Table::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
+            ->latest()->get();
 
         return view('app.tables.index', compact('tables', 'search'));
     }

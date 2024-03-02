@@ -25,7 +25,7 @@
                         <h5>@lang('crud.roles.name')</h5>
                         <div>
                             @forelse ($user->roles as $role)
-                                <div class="badge badge-primary">{{ $role->name }}</div>
+                                <div class="">{{ $role->name }}</div>
                                 <br />
                             @empty -
                             @endforelse

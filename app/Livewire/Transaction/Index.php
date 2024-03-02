@@ -150,7 +150,7 @@ class Index extends Component
     #[On('transactionDialogFalse')]
     public function rFalse()
     {
-        redirect(route('transaksi.index'));
+        redirect(route('transaction.index'));
     }
 
 

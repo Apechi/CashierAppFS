@@ -2,33 +2,33 @@
 
 return [
     'common' => [
-        'actions' => 'Actions',
-        'create' => 'Create',
+        'actions' => 'Aksi',
+        'create' => 'Tambah',
         'edit' => 'Edit',
         'update' => 'Update',
-        'new' => 'New',
+        'new' => 'Baru',
         'cancel' => 'Cancel',
         'attach' => 'Attach',
         'detach' => 'Detach',
-        'save' => 'Save',
-        'delete' => 'Delete',
-        'delete_selected' => 'Delete selected',
-        'search' => 'Search...',
-        'back' => 'Back to Index',
-        'are_you_sure' => 'Are you sure?',
-        'no_items_found' => 'No items found',
-        'created' => 'Successfully created',
-        'saved' => 'Saved successfully',
-        'removed' => 'Successfully removed',
+        'save' => 'Simpan',
+        'delete' => 'Hapus',
+        'delete_selected' => 'Hapus Dipilih',
+        'search' => 'Cari...',
+        'back' => 'Kembali ke Page Awal',
+        'are_you_sure' => 'Apa kamu yakin?',
+        'no_items_found' => 'Data tidak ada',
+        'created' => 'Berhasil di Tambah',
+        'saved' => 'Berhasil di Simpan',
+        'removed' => 'Berhasil di Hapus',
     ],
 
     'types' => [
-        'name' => 'Types',
-        'index_title' => 'Types List',
-        'new_title' => 'New Type',
-        'create_title' => 'Create Type',
-        'edit_title' => 'Edit Type',
-        'show_title' => 'Show Type',
+        'name' => 'Tipe Menu',
+        'index_title' => 'List Tipe',
+        'new_title' => 'Tipe Baru',
+        'create_title' => 'Tambah Tipe Menu',
+        'edit_title' => 'Edit Tipe',
+        'show_title' => 'Lihat Tipe',
         'inputs' => [
             'name' => 'Nama',
             'icon' => 'Icon',
@@ -37,12 +37,12 @@ return [
     ],
 
     'customers' => [
-        'name' => 'Customers',
-        'index_title' => 'Customers List',
-        'new_title' => 'New Customer',
-        'create_title' => 'Create Customer',
-        'edit_title' => 'Edit Customer',
-        'show_title' => 'Show Customer',
+        'name' => 'Pelanggan',
+        'index_title' => 'List Pelanggan',
+        'new_title' => 'Pelanggan Baru',
+        'create_title' => 'Tambah Pelanggan',
+        'edit_title' => 'Edit Pelanggan',
+        'show_title' => 'Lihat Pelanggan',
         'inputs' => [
             'name' => 'Nama',
             'email' => 'Email',
@@ -52,12 +52,12 @@ return [
     ],
 
     'tables' => [
-        'name' => 'Tables',
-        'index_title' => 'Tables List',
-        'new_title' => 'New Table',
-        'create_title' => 'Create Table',
-        'edit_title' => 'Edit Table',
-        'show_title' => 'Show Table',
+        'name' => 'Meja',
+        'index_title' => 'List Meja',
+        'new_title' => 'Meja Baru',
+        'create_title' => 'Tambah Meja',
+        'edit_title' => 'Edit Meja',
+        'show_title' => 'Lihat Meja',
         'inputs' => [
             'table_number' => 'Nomor Meja',
             'capacity' => 'Kapasitas',
@@ -66,12 +66,12 @@ return [
     ],
 
     'stocks' => [
-        'name' => 'Stocks',
-        'index_title' => 'Stocks List',
-        'new_title' => 'New Stock',
-        'create_title' => 'Create Stock',
-        'edit_title' => 'Edit Stock',
-        'show_title' => 'Show Stock',
+        'name' => 'Stok',
+        'index_title' => 'List Stok',
+        'new_title' => 'Stok Baru',
+        'create_title' => 'Tambah Stok',
+        'edit_title' => 'Edit Stok',
+        'show_title' => 'Lihat Stock',
         'inputs' => [
             'menu_id' => 'Pilih Menu',
             'quantity' => 'Kuantitas',
@@ -79,12 +79,12 @@ return [
     ],
 
     'users' => [
-        'name' => 'Users',
-        'index_title' => 'Users List',
-        'new_title' => 'New User',
-        'create_title' => 'Create User',
-        'edit_title' => 'Edit User',
-        'show_title' => 'Show User',
+        'name' => 'Pengguna',
+        'index_title' => 'List Pengguna',
+        'new_title' => 'Pengguna Baru',
+        'create_title' => 'Tambah Pengguna',
+        'edit_title' => 'Edit Pengguna',
+        'show_title' => 'Lihat Pengguna',
         'inputs' => [
             'name' => 'Name',
             'email' => 'Email',
@@ -93,12 +93,12 @@ return [
     ],
 
     'bookings' => [
-        'name' => 'Bookings',
-        'index_title' => 'Bookings List',
-        'new_title' => 'New Booking',
-        'create_title' => 'Create Booking',
-        'edit_title' => 'Edit Booking',
-        'show_title' => 'Show Booking',
+        'name' => 'Pemesanan',
+        'index_title' => 'List Pemesanan',
+        'new_title' => 'Pemesanan Baru',
+        'create_title' => 'Tambah Pemesanan',
+        'edit_title' => 'Edit Pemesanan',
+        'show_title' => 'Lihat Pemesanan',
         'inputs' => [
             'bookers_name' => 'Nama Pemesan',
             'date' => 'Tanggal Booking',
@@ -110,7 +110,7 @@ return [
     ],
 
     'categories' => [
-        'name' => 'Categories',
+        'name' => 'Kategori',
         'index_title' => 'List Kategori',
         'new_title' => 'Kategori Baru',
         'create_title' => 'Tambah Kategori',
@@ -123,12 +123,12 @@ return [
     ],
 
     'menus' => [
-        'name' => 'Menus',
-        'index_title' => 'Menus List',
-        'new_title' => 'New Menu',
-        'create_title' => 'Create Menu',
+        'name' => 'Menu',
+        'index_title' => 'List Menu',
+        'new_title' => 'Menu Baru',
+        'create_title' => 'Tambah Menu',
         'edit_title' => 'Edit Menu',
-        'show_title' => 'Show Menu',
+        'show_title' => 'Lihat Menu',
         'inputs' => [
             'name' => 'Nama',
             'price' => 'Harga',
@@ -140,23 +140,23 @@ return [
 
     'roles' => [
         'name' => 'Roles',
-        'index_title' => 'Roles List',
-        'create_title' => 'Create Role',
+        'index_title' => 'List Role',
+        'create_title' => 'Buat Role',
         'edit_title' => 'Edit Role',
-        'show_title' => 'Show Role',
+        'show_title' => 'Lihat Role',
         'inputs' => [
-            'name' => 'Name',
+            'name' => 'Nama',
         ],
     ],
 
     'permissions' => [
-        'name' => 'Permissions',
-        'index_title' => 'Permissions List',
-        'create_title' => 'Create Permission',
+        'name' => 'Permission',
+        'index_title' => 'List Permissions',
+        'create_title' => 'Buat Permission',
         'edit_title' => 'Edit Permission',
-        'show_title' => 'Show Permission',
+        'show_title' => 'Lihat Permission',
         'inputs' => [
-            'name' => 'Name',
+            'name' => 'Nama',
         ],
     ],
 ];

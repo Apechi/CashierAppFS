@@ -5,7 +5,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-lg-5">
-        <x-inputs.text name="icon" wire:model.lazy='icon' label="Icon" placeholder="font-awesome icom"
+        <x-inputs.text name="icon" wire:model.lazy='icon' label="Icon" placeholder="font-awesome icon"
             required></x-inputs.text>
     </x-inputs.group>
 

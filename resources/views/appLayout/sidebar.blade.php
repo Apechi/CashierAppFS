@@ -3,9 +3,12 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
-        <li class="nav-heading">Application</li>
+
 
         @auth
+
+            <li class="nav-heading">Application</li>
+
             @can('view-any', App\Models\Category::class)
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs(['categories.index', 'categories.show']) ? '' : 'collapsed' }}"
@@ -70,11 +73,24 @@
                 </li>
             @endcan
             @can('view-any', App\Models\Transaction::class)
+                <li class="nav-heading">Transaksi</li>
+
                 @can('view-any', App\Models\TransactionDetail::class)
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs(['transaction.index']) ? '' : 'collapsed' }}"
                             href="{{ route('transaction.index') }}">
                             <i class="bi bi-cart-fill"></i>
+                            <span>Transaksi</span>
+                        </a>
+                    </li>
+                @endcan
+            @endcan
+            @can('view-any', App\Models\Transaction::class)
+                @can('view-any', App\Models\TransactionDetail::class)
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs(['transaction.index']) ? '' : 'collapsed' }}"
+                            href="{{ route('transaction.index') }}">
+                            <i class="bi bi-basket-fill"></i>
                             <span>Transaksi</span>
                         </a>
                     </li>
@@ -113,9 +129,6 @@
 
 
         @endauth
-
-
-
     </ul>
 
 </aside><!-- End Sidebar-->

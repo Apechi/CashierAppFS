@@ -75,11 +75,7 @@
                                 </tr>
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3">{!! $users->render() !!}</td>
-                            </tr>
-                        </tfoot>
+
                     </table>
                 </div>
             </div>

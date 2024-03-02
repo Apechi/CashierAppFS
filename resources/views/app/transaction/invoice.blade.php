@@ -53,23 +53,22 @@
                         <hr class="my-4">
 
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-6">
                                 <div class="text-muted">
                                     <h5 class="font-size-16 mb-3">Ditagihkan Ke:</h5>
                                     <h5 class="font-size-15 mb-2">
                                         Nama:
                                         {{ $data->customer->name == 'umum' ? 'Pelanggan Umum' : $data->customer->name }}
                                     </h5>
-                                    @if ($data->customer->name = !'umum')
-                                        <p>tod</p>
+                                    @if ($data->customer->name != 'umum')
+                                        <p class="mb-1">Alamat: {{ $data->customer->address }}</p>
+                                        <p class="mb-1">Email: {{ $data->customer->email }}</p>
+                                        <p>No Telp: {{ $data->customer->no_telp }}</p>
                                     @endif
-                                    <p class="mb-1">Alamat: {{ $data->customer->address }}</p>
-                                    <p class="mb-1">Email: {{ $data->customer->email }}</p>
-                                    <p>No Telp: {{ $data->customer->no_telp }}</p>
                                 </div>
                             </div>
                             <!-- end col -->
-                            <div class="col-sm-6">
+                            <div class="col-6">
                                 <div class="text-muted text-sm-end">
                                     <div>
                                         <h5 class="font-size-15 mb-1">Nomor Faktur:</h5>

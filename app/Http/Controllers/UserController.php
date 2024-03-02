@@ -20,14 +20,12 @@ class UserController extends Controller
     {
         $this->authorize('view-any', User::class);
 
-        $search = $request->get('search', '');
 
-        $users = User::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
 
-        return view('app.users.index', compact('users', 'search'));
+        $users = User::latest()->get();
+
+
+        return view('app.users.index', compact('users'));
     }
 
     /**

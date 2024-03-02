@@ -22,9 +22,7 @@ class BookingController extends Controller
         $search = $request->get('search', '');
 
         $bookings = Booking::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
+            ->latest()->get();
 
         return view('app.bookings.index', compact('bookings', 'search'));
     }

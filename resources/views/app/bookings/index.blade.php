@@ -86,11 +86,7 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="7">{!! $bookings->render() !!}</td>
-                            </tr>
-                        </tfoot>
+
                     </table>
                 </div>
             </div>

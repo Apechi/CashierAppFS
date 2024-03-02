@@ -15,13 +15,16 @@ class TypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
         $this->authorize('view-any', Type::class);
 
 
-        return view('app.types.index');
+        $types = Type::latest()->get();
+
+        return view('app.types.index', compact('types'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,6 +32,11 @@ class TypeController extends Controller
     public function create(Request $request)
     {
         $this->authorize('create', Type::class);
+
+
+        $categories = Category::pluck('name', 'id');
+
+        return view('app.types.create', compact('categories'));
     }
 
     /**
@@ -63,6 +71,11 @@ class TypeController extends Controller
     public function edit(Request $request, Type $type)
     {
         $this->authorize('update', $type);
+
+
+        $categories = Category::pluck('name', 'id');
+
+        return view('app.types.edit', compact('type', 'categories'));
     }
 
     /**

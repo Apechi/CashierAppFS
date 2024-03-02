@@ -8,21 +8,18 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller {
+class RoleController extends Controller
+{
 
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(): View
     {
-        $this->authorize('list', Role::class);
+        $this->authorize('list', Role::class);;
+        $roles = Role::latest()->get();
 
-        $search = $request->get('search', '');
-        $roles = Role::where('name', 'like', "%{$search}%")->paginate(10);
-
-        return view('app.roles.index')
-            ->with('roles', $roles)
-            ->with('search', $search);
+        return view('app.roles.index', compact('roles'));
     }
 
     /**
@@ -92,10 +89,10 @@ class RoleController extends Controller {
         $this->authorize('update', $role);
 
         $data = $this->validate($request, [
-            'name' => 'required|max:32|unique:roles,name,'.$role->id,
+            'name' => 'required|max:32|unique:roles,name,' . $role->id,
             'permissions' => 'array',
         ]);
-        
+
         $role->update($data);
 
         $permissions = Permission::find($request->permissions);

@@ -22,9 +22,7 @@ class StockController extends Controller
         $search = $request->get('search', '');
 
         $stocks = Stock::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
+            ->latest()->get();
 
         return view('app.stocks.index', compact('stocks', 'search'));
     }

@@ -68,11 +68,7 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">{!! $permissions->render() !!}</td>
-                            </tr>
-                        </tfoot>
+
                     </table>
                 </div>
             </div>

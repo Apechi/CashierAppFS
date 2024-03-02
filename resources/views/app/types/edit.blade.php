@@ -1,22 +1,35 @@
-<div>
-    <div class="modal fade" wire:ignore.self id="editType" tabindex="-1" aria-labelledby="editTypeLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <x-form method="PUT" action="{{ route('types.update', $type) }}" class="mt-4">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="editTypeLabel">Edit Tipe Menu</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+@extends('appLayout.app')
+
+@section('content')
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="{{ route('types.index') }}" class="mr-4"><i class="icon ion-md-arrow-back"></i></a>
+                    @lang('crud.types.edit_title')
+                </h4>
+
+                <x-form method="PUT" action="{{ route('types.update', $type) }}" class="mt-4">
+                    @include('app.types.form-inputs')
+
+                    <div class="mt-4">
+                        <a href="{{ route('types.index') }}" class="btn btn-light">
+                            <i class="icon ion-md-return-left text-primary"></i>
+                            @lang('crud.common.back')
+                        </a>
+
+                        <a href="{{ route('types.create') }}" class="btn btn-light">
+                            <i class="icon ion-md-add text-primary"></i>
+                            @lang('crud.common.create')
+                        </a>
+
+                        <button type="submit" class="btn btn-primary float-right">
+                            <i class="icon ion-md-save"></i>
+                            @lang('crud.common.update')
+                        </button>
                     </div>
-                    <div class="modal-body">
-                        @include('app.types.form-inputs')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Edit</button>
-                    </div>
-                </div>
-            </x-form>
+                </x-form>
+            </div>
         </div>
     </div>
-</div>
+@endsection

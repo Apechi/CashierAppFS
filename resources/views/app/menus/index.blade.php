@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="searchbar mt-0 mb-4">
+        <div class=" mt-0 mb-4">
             <div class="d-flex justify-content-end">
                 <div class=" text-right">
                     @can('create', App\Models\Menu::class)
@@ -83,11 +83,7 @@
                             @empty
                             @endforelse
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">{!! $menus->render() !!}</td>
-                            </tr>
-                        </tfoot>
+
                     </table>
                 </div>
             </div>
