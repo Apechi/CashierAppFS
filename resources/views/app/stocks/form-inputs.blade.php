@@ -13,7 +13,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.number name="quantity" label="Kuantitas" :value="old('quantity', $editing ? $stock->quantity : '')" max="255" placeholder="Kuantitas Menu"
+        <x-inputs.number name="quantity" label="Kuantitas" :value="old('quantity', $editing ? $stock->quantity : '')" placeholder="Kuantitas Menu"
             required></x-inputs.number>
     </x-inputs.group>
 </div>

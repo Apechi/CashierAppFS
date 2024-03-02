@@ -53,6 +53,7 @@ Route::prefix('/')
         Route::resource('bookings', BookingController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('menus', MenuController::class);
-        Route::resource('transaction', TransactionController::class);
+        Route::get('transaction', [TransactionController::class, 'index'])->name('transaction.index');
+        Route::get('transaction/index', [TransactionController::class, 'listTransaksi'])->name('transaction.listTransaksi');
         Route::get('transaksi/invoice/{id}', [TransactionController::class, 'notaFaktur']);
     });

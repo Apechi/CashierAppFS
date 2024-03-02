@@ -19,12 +19,11 @@ class BookingController extends Controller
     {
         $this->authorize('view-any', Booking::class);
 
-        $search = $request->get('search', '');
 
-        $bookings = Booking::search($search)
-            ->latest()->get();
 
-        return view('app.bookings.index', compact('bookings', 'search'));
+        $bookings = Booking::latest()->get();
+
+        return view('app.bookings.index', compact('bookings'));
     }
 
     /**
@@ -34,7 +33,7 @@ class BookingController extends Controller
     {
         $this->authorize('create', Booking::class);
 
-        $tables = Table::pluck('id', 'id');
+        $tables = Table::pluck('table_number', 'id');
 
         return view('app.bookings.create', compact('tables'));
     }
@@ -47,7 +46,7 @@ class BookingController extends Controller
         $this->authorize('create', Booking::class);
 
         $validated = $request->validated();
-
+        
         $booking = Booking::create($validated);
 
         return redirect()

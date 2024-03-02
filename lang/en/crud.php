@@ -159,4 +159,18 @@ return [
             'name' => 'Nama',
         ],
     ],
+
+    'transaction' => [
+        'name' => 'Transaksi',
+        'index_title' => 'List Transaksi',
+        'show_title' => 'Lihat Permission',
+        'inputs' => [
+            'id' => 'No Faktur',
+            'date' => 'Tanggal Transaksi',
+            'customer' => 'Pelanggan',
+            'total_price' => 'Total Pembayaran',
+            'payment_method' => 'Metode Pembayaran',
+            'keterangan' => 'Keterangan',
+        ],
+    ],
 ];

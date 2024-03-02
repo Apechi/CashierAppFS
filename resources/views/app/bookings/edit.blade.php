@@ -9,7 +9,9 @@
                     @lang('crud.bookings.edit_title')
                 </h4>
 
-                <x-form method="PUT" action="{{ route('bookings.update', $booking) }}" class="mt-4">
+                <form method="POST" action="{{ route('bookings.update', $booking) }}" class="mt-4">
+                    @csrf
+                    @method('PUT')
                     @include('app.bookings.form-inputs')
 
                     <div class="mt-4">
@@ -28,7 +30,7 @@
                             @lang('crud.common.update')
                         </button>
                     </div>
-                </x-form>
+                </form>
             </div>
         </div>
     </div>

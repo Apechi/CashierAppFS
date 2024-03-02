@@ -88,10 +88,10 @@
             @can('view-any', App\Models\Transaction::class)
                 @can('view-any', App\Models\TransactionDetail::class)
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs(['transaction.index']) ? '' : 'collapsed' }}"
-                            href="{{ route('transaction.index') }}">
+                        <a class="nav-link {{ request()->routeIs(['transaction.listTransaksi']) ? '' : 'collapsed' }}"
+                            href="{{ route('transaction.listTransaksi') }}">
                             <i class="bi bi-basket-fill"></i>
-                            <span>Transaksi</span>
+                            <span>List Transaksi</span>
                         </a>
                     </li>
                 @endcan

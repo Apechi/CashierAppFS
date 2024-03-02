@@ -23,8 +23,8 @@ class BookingStoreRequest extends FormRequest
             'bookers_name' => ['required', 'max:255', 'string'],
             'date' => ['required', 'date'],
             'table_id' => ['required', 'exists:tables,id'],
-            'start_time' => ['required', 'date_format:H:i:s'],
-            'end_time' => ['required', 'date_format:H:i:s'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'end_time' => ['required', 'date_format:H:i'],
             'total_customer' => ['required', 'numeric'],
         ];
     }

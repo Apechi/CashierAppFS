@@ -9,7 +9,8 @@
                     @lang('crud.bookings.create_title')
                 </h4>
 
-                <x-form method="POST" action="{{ route('bookings.store') }}" class="mt-4">
+                <form method="POST" action="{{ route('bookings.store') }}" class="mt-4">
+                    @csrf
                     @include('app.bookings.form-inputs')
 
                     <div class="mt-4">
@@ -23,7 +24,7 @@
                             @lang('crud.common.create')
                         </button>
                     </div>
-                </x-form>
+                </form>
             </div>
         </div>
     </div>
