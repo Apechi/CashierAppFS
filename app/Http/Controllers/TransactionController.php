@@ -31,8 +31,17 @@ class TransactionController extends Controller
     {
         $this->authorize('view-any', Transaction::class);
 
-        $transactions = Transaction::all();
+        $transactions = Transaction::latest()->get();
 
         return view('app.transaction.list', compact('transactions'));
+    }
+
+    public function show($id)
+    {
+        $this->authorize('view-any', Transaction::class);
+
+        $transaction = Transaction::findOrFail($id);
+
+        return view('app.transaction.show', compact('transaction'));
     }
 }

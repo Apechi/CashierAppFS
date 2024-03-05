@@ -20,6 +20,11 @@ return [
         'created' => 'Berhasil di Tambah',
         'saved' => 'Berhasil di Simpan',
         'removed' => 'Berhasil di Hapus',
+        'export' => [
+            'pdf' => 'Export PDF',
+            'excel' => 'Export XLS'
+        ],
+        'import' => 'Import'
     ],
 
     'types' => [
@@ -163,14 +168,14 @@ return [
     'transaction' => [
         'name' => 'Transaksi',
         'index_title' => 'List Transaksi',
-        'show_title' => 'Lihat Permission',
+        'show_title' => 'Lihat Transaksi',
         'inputs' => [
             'id' => 'No Faktur',
             'date' => 'Tanggal Transaksi',
             'customer' => 'Pelanggan',
             'total_price' => 'Total Pembayaran',
             'payment_method' => 'Metode Pembayaran',
-            'keterangan' => 'Keterangan',
+            'keterangan' => 'Keterangan Pembelian',
         ],
     ],
 ];

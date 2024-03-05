@@ -5,11 +5,21 @@
         <div class="searchbar mt-0 mb-4">
             <div class="d-flex justify-content-end">
                 <div class="text-right">
+                    <a href="" class="btn btn-dark">
+                        <i class="bi bi-file-pdf"></i> @lang('crud.common.export.pdf')
+                    </a>
+                    <a href="type/export/" class="btn btn-dark">
+                        <i class="bi bi-file-excel"></i> @lang('crud.common.export.excel')
+                    </a>
+                    <a href="" class="btn btn-warning">
+                        <i class="bi bi-file-excel"></i> @lang('crud.common.import')
+                    </a>
                     @can('create', App\Models\Type::class)
                         <a href="{{ route('types.create') }}" class="btn btn-primary">
                             <i class="icon ion-md-add"></i> @lang('crud.common.create')
                         </a>
                     @endcan
+
                 </div>
             </div>
         </div>

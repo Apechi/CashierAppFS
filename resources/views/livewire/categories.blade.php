@@ -8,6 +8,15 @@
                 </div>
                 <div class="">
                     @can('create', App\Models\Category::class)
+                        <a href="" class="btn btn-dark">
+                            <i class="bi bi-file-pdf"></i> @lang('crud.common.export.pdf')
+                        </a>
+                        <a href="" class="btn btn-dark">
+                            <i class="bi bi-file-excel"></i> @lang('crud.common.export.excel')
+                        </a>
+                        <a href="" class="btn btn-warning">
+                            <i class="bi bi-file-excel"></i> @lang('crud.common.import')
+                        </a>
                         <button type="button" class="btn btn-primary" wire:click='resetField()' data-bs-toggle="modal"
                             data-bs-target="#createCategories">
                             Tambah

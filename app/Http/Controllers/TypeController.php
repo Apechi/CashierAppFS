@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MenuTypeExport;
 use App\Models\Type;
 use App\Models\Category;
 use Illuminate\View\View;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\TypeStoreRequest;
 use App\Http\Requests\TypeUpdateRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TypeController extends Controller
 {
@@ -108,5 +110,10 @@ class TypeController extends Controller
         return redirect()
             ->route('types.index')
             ->withSuccess(__('crud.common.removed'));
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new MenuTypeExport, 'tipe.xlsx');
     }
 }

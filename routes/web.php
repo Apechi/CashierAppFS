@@ -56,4 +56,19 @@ Route::prefix('/')
         Route::get('transaction', [TransactionController::class, 'index'])->name('transaction.index');
         Route::get('transaction/index', [TransactionController::class, 'listTransaksi'])->name('transaction.listTransaksi');
         Route::get('transaksi/invoice/{id}', [TransactionController::class, 'notaFaktur']);
+        Route::get('transaction/show/{id}', [TransactionController::class, 'show']);
+
+        //Excel Export
+
+        Route::get('type/export/', [TypeController::class, 'exportExcel']);
+        Route::get('category/export/', [CategoryController::class, 'exportExcel']);
+        Route::get('menu/export/', [MenuController::class, 'exportExcel']);
+        Route::get('stok/export/', [StockController::class, 'exportExcel']);
+        Route::get('table/export/', [TableController::class, 'exportExcel']);
+        Route::get('customer/export/', [CustomerController::class, 'exportExcel']);
+        Route::get('booking/export/', [BookingController::class, 'exportExcel']);
+        Route::get('listTransaction/export/', [TransactionController::class, 'exportExcel']);
+        Route::get('user/export/', [UserController::class, 'exportExcel']);
+        Route::get('role/export/', [RoleController::class, 'exportExcel']);
+        Route::get('permission/export/', [PermissionController::class, 'exportExcel']);
     });

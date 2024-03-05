@@ -30,7 +30,7 @@
                     <div class="border-1 border border-primary rounded overflow-hidden">
                         <div class="list overflow-auto" style="height: 15em">
                             @foreach ($produk_detail as $item)
-                                <div wire:key='product_detail-{{ $item['id'] }}' class="card mb-2 p-2">
+                                <div wire:key='product_details-{{ $item['id'] }}' class="mb-1    p-2">
                                     <div class="produk d-flex align-items-center">
                                         <img class="m-2 img-thumbnail"
                                             src="{{ $item['image'] ? \Storage::url($item['image']) : '' }}"

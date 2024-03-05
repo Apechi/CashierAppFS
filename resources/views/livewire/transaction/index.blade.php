@@ -139,41 +139,44 @@
                     <hr class="m-0">
                     <div class="product-detail h-100 p-3 overflow-auto">
                         @foreach ($produk_detail as $item)
-                            <div wire:key='product_detail-{{ $item['id'] }}' class="card mb-2 p-2">
-                                <div class="produk d-flex align-items-center">
-                                    <img class="m-2 img-thumbnail"
-                                        src="{{ $item['image'] ? \Storage::url($item['image']) : '' }}"
-                                        style="width:50px; height: 100%; object-fit: cover"
-                                        alt="{{ $item['name'] }}" />
-                                    <div class="detail w-100 d-flex justify-content-between align-items-center">
-                                        <div class="info">
-                                            <p class="text-primary m-0" style="font-weight: bold; font-size: 0.8rem">
-                                                {{ $item['name'] }}
-                                            </p>
-                                            <p class="text-muted m-0" style="font-size: 0.8rem">
-                                                Rp.{{ $item['sub_total'] }}
-                                            </p>
-                                        </div>
-                                        <div class="qtyControl d-md-flex gap-md-1">
+                            <div class="ala">
+                                <div wire:key='product_detail-{{ $item['id'] }}' class="card mb-2 p-2">
+                                    <div class="produk d-flex align-items-center">
+                                        <img class="m-2 img-thumbnail"
+                                            src="{{ $item['image'] ? \Storage::url($item['image']) : '' }}"
+                                            style="width:50px; height: 100%; object-fit: cover"
+                                            alt="{{ $item['name'] }}" />
+                                        <div class="detail w-100 d-flex justify-content-between align-items-center">
+                                            <div class="info">
+                                                <p class="text-primary m-0"
+                                                    style="font-weight: bold; font-size: 0.8rem">
+                                                    {{ $item['name'] }}
+                                                </p>
+                                                <p class="text-muted m-0" style="font-size: 0.8rem">
+                                                    Rp.{{ $item['sub_total'] }}
+                                                </p>
+                                            </div>
+                                            <div class="qtyControl d-md-flex gap-md-1">
 
-                                            <a type="button" wire:click='decreaseQuantity({{ $item['id'] }})'
-                                                class="bi bi-dash-circle-fill">
-                                            </a>
-                                            <p style="font-size: 0.8rem" class="text-muted m-0">
-                                                {{ $item['qty'] }}</p>
-                                            <a type="button" wire:click='increaseQuantity({{ $item['id'] }})'
-                                                class="bi bi-plus-circle-fill ">
+                                                <a type="button" wire:click='decreaseQuantity({{ $item['id'] }})'
+                                                    class="bi bi-dash-circle-fill">
+                                                </a>
+                                                <p style="font-size: 0.8rem" class="text-muted m-0">
+                                                    {{ $item['qty'] }}</p>
+                                                <a type="button" wire:click='increaseQuantity({{ $item['id'] }})'
+                                                    class="bi bi-plus-circle-fill ">
 
-                                            </a>
+                                                </a>
+                                            </div>
                                         </div>
+
                                     </div>
-
+                                    @if ($item['id'] === $stokBeak)
+                                        @error('stok-habis')
+                                            <p class="text-danger m-0">Melebihi Stok!</p>
+                                        @enderror
+                                    @endif
                                 </div>
-                                @if ($item['id'] === $stokBeak)
-                                    @error('stok-habis')
-                                        <p class="text-danger m-0">Melebihi Stok!</p>
-                                    @enderror
-                                @endif
                             </div>
                         @endforeach
                     </div>
